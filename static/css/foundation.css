@@ -1039,11 +1039,11 @@ td {
 
 /* Default Link Styles */
 a {
-  color: #2ba6cb;
+  color: #000000;
   text-decoration: none;
   line-height: inherit; }
   a:hover, a:focus {
-    color: #2795b6; }
+    color: #000000; }
   a img {
     border: none; }
 
@@ -2942,8 +2942,8 @@ label.error {
     background: #090909;
     color: white; }
   .top-bar-section ul li.active > a {
-    background: #090909;
-    color: white; }
+    background: #FFFFFF;
+    color: black; }
   .top-bar-section .has-form {
     padding: 15px; }
   .top-bar-section .has-dropdown {
@@ -3002,7 +3002,7 @@ label.error {
 
 @media only screen and (min-width: 58.75em) {
   .top-bar {
-    background: #111111;
+    background: #FFFFFF;
     *zoom: 1;
     overflow: visible; }
     .top-bar:before, .top-bar:after {
@@ -3094,8 +3094,8 @@ label.error {
     .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"] {
       border-bottom: none;
       border-top: none;
-      border-right: solid 1px #2b2b2b;
-      border-left: solid 1px black;
+      border-right: solid 1px white;
+      border-left: solid 1px white;
       clear: none;
       height: 45px;
       width: 0px; }
@@ -4126,7 +4126,7 @@ ul.pagination {
   border-color: #d9d9d9;
   margin-bottom: 1.25em;
   padding: 1.25em;
-  background: #f2f2f2; }
+  background: #FFFFFF; }
   .panel > :first-child {
     margin-top: 0; }
   .panel > :last-child {

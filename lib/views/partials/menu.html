@@ -1,0 +1,23 @@
+<nav class="top-bar">
+	<section class="top-bar-section">
+	
+		<ul class="left">
+			
+			{{#if loggedin}}
+				<!-- Logged In -->
+				<li class="divider"></li>
+				<li class="active"><a href="#">Log Out</a></li>
+				<li class="divider"></li>
+				<li class="active"><a href="#">Create Entry</a></li>
+				<li class="divider"></li>
+				<!-- Logged In -->
+			{{else}}
+				<!-- Not Logged In -->
+				<li class="divider"></li>
+				<li class="active"><a href="/login">Log In</a></li>
+				<li class="divider"></li>
+				<!-- Not Logged In -->
+			{{/if}}			
+		</ul>
+	</section>
+</nav>
