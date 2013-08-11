@@ -18,6 +18,8 @@
   "dependencies": {
     "hapi": "~1.9.0",
     "mysql": "~2.0.0-alpha8",
-    "handlebars": "~1.0.12"
+    "handlebars": "~1.0.12",
+    "forever": "~0.10.8",
+    "node_hash": "~0.2.0"
   }
 }

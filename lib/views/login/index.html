@@ -22,14 +22,15 @@
 			<div class="panel">
 				<h4 class="text-center">Administration</h4>
 				<hr />
+				<form method="post" action="login/verify" enctype="multipart/form-data">
 				<div class="row">
 					<div class="large-12 columns">
-					<input type="text" placeholder="E-Mail Address">
+					<input type="text" placeholder="E-Mail Address" name="email">
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-					<input type="password" placeholder="Password">
+					<input type="password" placeholder="Password" name="password">
 					</div>
 				</div>
 				<div class="row">
@@ -37,6 +38,7 @@
 					<input type="submit" value="Log In" class="small button">
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 		<div class="large-3 columns">&nbsp;</div>
