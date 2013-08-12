@@ -43,22 +43,26 @@
 						<p style="font-size:13px;">{{{BlogContent}}}</p>
 					</div>
 				</div>
-				
 				<div class="row">
 					<div class="large-12 columns">
 						<p><a href="/post/{{BlogID}}">Permalink</a></p>
 					</div>
 				</div>
-				<!-- <div class="row">
-					<div class="large-12 columns">
-						Blog Tags
-						<p>{{BlogID}}</p>
-					</div>
-				</div>
-				 -->
 			</div>
 			{{/each}}
-<!-- 			<ul class="pagination">
+			
+			<!--{{#if userstatus}}
+				<!-- Logged In -->	
+			<!--<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+					<a href="/post-edit/{{BlogID}}">Edit</a>
+					<a href="/post-delete/{{BlogID}}">Delete</a>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+ 			<ul class="pagination">
 				<li class="arrow unavailable"><a href="">&laquo;</a></li>
 				<li class="current"><a href="">1</a></li>
 				<li><a href="">2</a></li>

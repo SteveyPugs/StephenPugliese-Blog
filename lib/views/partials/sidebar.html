@@ -1,24 +1,17 @@
 <!-- <h2>Search Section</h2> -->
 <div class="panel">
+	<form method="POSt" action="search">
 	<input type="text" placeholder="Enter search term here...">
-	<a href="#" class="button prefix">Search</a>
+	<input type="submit" value="Search" class="button prefix">
+	</form>
 </div>
 <div class="panel">
 	<u>Archive</u>
 	<br><br>
 	<ul class="no-bullet">
-		<li>2013</li>
-		<li class="hide">
-			<ul class="no-bullet">
-				<li>August</li>
-				<li>July</li>
-				<li>June</li>
-				<li>May</li>
-				<li>April</li>
-				<li>March</li>
-				<li>February</li>
-			</ul>
-		</li>
+		{{#each archiveresults}}
+		<li><a href="/archive/{{BlogYear}}/{{BlogMonthNum}}">{{BlogMonth}} - {{BlogYear}}</a></li>
+		{{/each}}
 	</ul>
 	
 </div>
@@ -26,7 +19,8 @@
 	<u>Tags</u>
 	<br><br>
 	<ul class="no-bullet">
-		<li>Sports</li>
-		<li>Stuff</li>
+		{{#each tags}}
+		<li><a href="/tags/{{tagname}}">{{tagname}}</a></li>
+		{{/each}}
 	</ul>	
 </div>

@@ -4,12 +4,13 @@
 		<ul class="left">
 			
 			{{#if userstatus}}
-				<!-- Logged In -->
+				<!-- Logged In -->				
+				<li class="divider"></li>
+				<li class="active"><a href="/post-new">New Entry</a></li>
+				<li class="divider"></li>
+				<li class="active"><a href="/tags-edit">Category Management</a></li>
 				<li class="divider"></li>
 				<li class="active"><a href="/logout">Log Out</a></li>
-				<li class="divider"></li>
-				<li class="active"><a href="#">Create Entry</a></li>
-				<li class="divider"></li>
 				<!-- Logged In -->
 			{{else}}
 				<!-- Not Logged In -->
