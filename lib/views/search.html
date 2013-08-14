@@ -22,7 +22,10 @@
 	</div>
 	<div class="row">
 		<div class="large-9 columns">
+			<h3>Search for <i>"{{search}}"</i></h3>
 			<!-- <h2>Entrys</h2> -->
+			{{#if entries.length}}
+			
 			{{#each entries}}
 			<div class="panel">
 				<div class="row">
@@ -50,6 +53,15 @@
 				</div>
 			</div>
 			{{/each}}
+			{{else}}
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						<h4 class="subheader">No Results Were Found For the Current Search Term</h3>
+					</div>
+				</div>
+			</div>
+			{{/if}}
 		</div>
 		<div class="large-3 columns">
 			{{> sidebar}}
