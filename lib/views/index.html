@@ -22,7 +22,16 @@
 	</div>
 	<div class="row">
 		<div class="large-9 columns">
-			<!-- <h2>Entrys</h2> -->
+			{{#if archmth.length}}
+			<h3>Archive Posts For {{archmth}} {{archyear}}</h3>
+			{{/if}}
+			{{#if tagname.length}}
+			<h3>Archive Posts for Tag <i>#{{tagname}}</i></h3>
+			{{/if}}
+			{{#if search.length}}
+			<h3>Search for <i>"{{search}}"</i></h3>
+			{{/if}}
+			{{#if entries.length}}
 			{{#each entries}}
 			<div class="panel">
 				<div class="row">
@@ -48,8 +57,47 @@
 						<p><a href="/post/{{BlogID}}">Permalink</a> - <a href="/post-edit/{{BlogID}}">Edit</a></p>
 					</div>
 				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<h6>Comments ({{CommentAmount}})</h6>
+					</div>
+				</div>
 			</div>
 			{{/each}}
+			{{else}}
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						<h4 class="subheader">No Results Were Found For the Current Search Term</h4>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+			
+			{{#if comments.length}}
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						<h4><u>Comments</u></h4>
+						{{#each comments}}
+						<fieldset>
+							<legend>{{CommentName}}</legend>
+							<p>{{CommentContent}}</p>
+						</fieldset>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			{{else}}
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						<h4>No Comments</h4>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+			
 		</div>
 		<div class="large-3 columns">
 			{{> sidebar}}
