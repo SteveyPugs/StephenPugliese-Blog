@@ -21,81 +21,46 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-9 columns">
-			{{#if archmth.length}}
-			<h3>Archive Posts For {{archmth}} {{archyear}}</h3>
-			{{/if}}
-			{{#if tagname.length}}
-			<h3>Archive Posts for Tag <i>#{{tagname}}</i></h3>
-			{{/if}}
-			{{#if search.length}}
-			<h3>Search for <i>"{{search}}"</i></h3>
-			{{/if}}
-			{{#if entries.length}}
-			{{#each entries}}
+		<div class="large-12 columns">
+			<h3>New Entry</h3>
 			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<!--Blog Title-->
-						<h3 class="subheader">{{BlogTitle}}</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<!--Blog Date-->
-						<p style="font-size:13px; font-weight:bold;">Published {{BlogCreateDate}}</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<!--Blog Content-->
-						<p style="font-size:13px;">{{{BlogContent}}}</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<p><a href="/post/{{BlogID}}">Permalink</a> - <a href="/post-edit/{{BlogID}}">Edit</a></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<h6>Comments ({{CommentAmount}})</h6>
-					</div>
-				</div>
+				<form>
+					<fieldset>
+						<legend>New Entry Form</legend>
+							<div class="row">
+								<div class="large-12 columns">
+									<input type="text" placeholder="Title">
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns">
+									<textarea placeholder="Content"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-4 columns">
+									<label for="customDropdown1">Tag</label>
+								    <select id="customDropdown1" class="medium">
+									<option DISABLED>Choose A Tag</option>
+									{{#with tags}}
+								    <option value="{{tagname}}">{{tagname}}</option>
+									{{/with}}
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-6 columns">
+									<input type="button" class="button secondary medium radius" value="Create">
+								</div>
+							</div>
+					</fieldset>
+				</form>
 			</div>
-			{{/each}}
-			{{else}}
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h4 class="subheader">No Results Were Found For the Current Search Term</h4>
-					</div>
-				</div>
-			</div>
-			{{/if}}
-			
-			{{#if comments.length}}
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h4><u>Comments</u></h4>
-						{{#each comments}}
-						<fieldset>
-							<legend>{{CommentName}}</legend>
-							<p>{{CommentContent}}</p>
-						</fieldset>
-						{{/each}}
-					</div>
-				</div>
-			</div>
-			{{/if}}
-			
-		</div>
-		<div class="large-3 columns">
-			{{> sidebar}}
 		</div>
 	</div>
-
+	
+	
+	
   <script>
   document.write('<script src=' +
   ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
