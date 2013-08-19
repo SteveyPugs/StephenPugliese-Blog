@@ -59,9 +59,7 @@ $(document).ready(function () {
 		}
 	});
 	
-	
 	//Add Edit Page Check
-	
 	$('#post-save').click(function () {
 		
 		var title = $('#Title').val(); 
@@ -80,13 +78,11 @@ $(document).ready(function () {
 			$('#Error-Title').text("");
 		}
 		
-		
 		if (content.length == 0)
 		{
 			$('#Content').addClass("error");
 			$('#Error-Content').show();
-			$('#Error-Content').text("Length of Content needs to be > 0");
-			
+			$('#Error-Content').text("Length of Content needs to be > 0");		
 		}
 		else
 		{
@@ -94,23 +90,12 @@ $(document).ready(function () {
 			$('#Error-Content').hide();
 			$('#Error-Content').text("");
 		}
-		
+	
 		if (content.length != 0 && title.length != 0) {
 			return true;
 		}
 		else {
 			return false;
 		}
-		
-		
-		
-	});
-	
-	
-	function checkEntry() {
-	
-		return false;
-	}
-	
-	
+	});	
 });

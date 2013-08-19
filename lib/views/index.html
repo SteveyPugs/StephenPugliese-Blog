@@ -91,14 +91,19 @@
 					</div>
 				</div>
 			</div>
+			{{/if}}
 			
+			{{#if newcomment}}
 			<form method="post" action="/comment-save">
+			<input type="hidden" name="BlogID" id="BlogID">
 			<div class="panel">
 				<div class="row">
 					<div class="large-12 columns">
 						<h5>Add Comment</h5>
 						<input type="text" placeholder="Name" name="Name" id="Name">
+						<small class="error" id="Error-Name"></small>
 						<textarea placeholder="Comment" name="Comment" id="Comment"></textarea>
+						<small class="error" id="Error-Comment"></small>
 					</div>
 				</div>
 				<div class="row">
