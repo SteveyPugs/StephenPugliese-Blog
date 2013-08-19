@@ -35,13 +35,15 @@
 								<input type="hidden" name="BlogID" value="{{BlogID}}">
 								<div class="row">
 									<div class="large-12 columns">
-										<input type="text" placeholder="Title" name="Title" value="{{BlogTitle}}">
+										<input type="text" placeholder="Title" name="Title" id="Title" value="{{BlogTitle}}">
+										<small class="error" id="Error-Title"></small>
 									</div>
 								</div>
 								{{> tools}}
 								<div class="row">
 									<div class="large-12 columns">
 										<textarea placeholder="Content" name="Content" id="Content">{{BlogContent}}</textarea>
+										<small class="error" id="Error-Content"></small>
 									</div>
 								</div>
 								{{/each}}
@@ -49,13 +51,15 @@
 								<input type="hidden" name="Type" value="N">
 								<div class="row">
 									<div class="large-12 columns">
-										<input type="text" placeholder="Title" name="Title">
+										<input type="text" placeholder="Title" name="Title" id="Title">
+										<small class="error" id="Error-Title"></small>
 									</div>
 								</div>
 								{{> tools}}
 								<div class="row">
 									<div class="large-12 columns">
 										<textarea placeholder="Content" name="Content" id="Content"></textarea>
+										<small class="error" id="Error-Content"></small>
 									</div>
 								</div>
 							{{/if}}
@@ -73,13 +77,13 @@
 							{{#if post.length}}
 							<div class="row">
 								<div class="large-6 columns">
-									<input type="submit" class="button secondary medium radius" value="Update">
+									<input type="submit" class="button secondary medium radius" value="Update" id="post-save">
 								</div>
 							</div>
 							{{else}}
 							<div class="row">
 								<div class="large-6 columns">
-									<input type="submit" class="button secondary medium radius" value="Add">
+									<input type="submit" class="button secondary medium radius" value="Add"  id="post-save">
 								</div>
 							</div>
 							{{/if}}

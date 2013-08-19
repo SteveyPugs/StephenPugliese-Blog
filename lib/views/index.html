@@ -62,7 +62,7 @@
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<h6>Comments ({{CommentAmount}})</h6>
+						<h6>Comments ({{CommentAmount}}) - #{{TagName}}</h6>
 					</div>
 				</div>
 			</div>
@@ -91,8 +91,23 @@
 					</div>
 				</div>
 			</div>
-			{{/if}}
 			
+			<form method="post" action="/comment-save">
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						<h5>Add Comment</h5>
+						<input type="text" placeholder="Name" name="Name" id="Name">
+						<textarea placeholder="Comment" name="Comment" id="Comment"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<input type="submit" class="button secondary medium radius" value="Add" id="comment-save">
+					</div>
+				</div>
+			</div>
+			{{/if}}
 		</div>
 		<div class="large-3 columns">
 			{{> sidebar}}
