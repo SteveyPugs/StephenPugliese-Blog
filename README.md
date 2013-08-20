@@ -1,4 +1,4 @@
-StephenPugliese-Blog
+Blog Repo
 ====================
-
-blog.stephenpugliese.com
+Present: http://blog.stephenpugliese.com
+Future: http://www.endoflne.com
