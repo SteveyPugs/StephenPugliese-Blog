@@ -1,5 +1,6 @@
 var Hapi = require('hapi');
 var server = Hapi.createServer('localhost', 1234, { cors: true });
+//var server = Hapi.createServer('0.0.0.0', 1234, { cors: true, location:"http://www.endoflne.com" });  //production
 
 var home = require('./lib').Home;
 var user = require('./lib').User;
