@@ -11,7 +11,7 @@ server.auth('session', {
     scheme: 'cookie',
     password: 'dfad8fasjdnf89adf', //TODO: refactor this out to gitignored auth config file
     cookie: 'blog-cookie',  //?TODO: refactor this out to gitignored auth config file
-    redirectTo: '/',
+    redirectTo: '/login',
 	isSecure: false,
 	ttl: 1800000,
 	clearInvalid: true
