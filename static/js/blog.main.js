@@ -4,9 +4,7 @@ $(document).ready(function () {
 	var pageID = window.location.pathname.replace("/post/","");
 	$('#BlogID').val(pageID);
 	}
-	
-	$('#Error-Name').hide();
-	$('#Error-Comment').hide();
+
 	
 	//Add Comment Check
 	$('#comment-save').click(function () {
@@ -16,12 +14,14 @@ $(document).ready(function () {
 		if (name.length == 0)
 		{
 			$('#Name').addClass("error");
+			$('#Error-Name').addClass("error");
 			$('#Error-Name').show();
 			$('#Error-Name').text("Length of Name needs to be > 0");
 		}
 		else
 		{
 			$('#Name').removeClass("error");
+			$('#Error-Name').removeClass("error");
 			$('#Error-Name').hide();
 			$('#Error-Name').text("");
 		}
@@ -29,12 +29,14 @@ $(document).ready(function () {
 		if (comment.length == 0)
 		{
 			$('#Comment').addClass("error");
+			$('#Error-Comment').addClass("error");
 			$('#Error-Comment').show();
 			$('#Error-Comment').text("Length of comment needs to be > 0");		
 		}
 		else
 		{
 			$('#Comment').removeClass("error");
+			$('#Error-Comment').removeClass("error");
 			$('#Error-Comment').hide();
 			$('#Error-Comment').text("");
 		}

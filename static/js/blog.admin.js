@@ -1,7 +1,5 @@
 $(document).ready(function () {
 	//https://code.google.com/p/rangyinputs/wiki/Documentation
-	$('#Error-Title').hide();
-	$('#Error-Content').hide();
 
 	$("#text-bold").click(function(){
 		$("#Content").surroundSelectedText("[B]", "[/B]");
@@ -22,6 +20,10 @@ $(document).ready(function () {
 	$("#text-quotes").click(function(){
 		$("#Content").surroundSelectedText("[QUOTE]", "[/QUOTE]");
 	});	
+	
+	$("#text-blockquote").click(function(){
+		$("#Content").surroundSelectedText("[BLOCKQUOTE]", "[/BLOCKQUOTE]");
+	});
 	
 	$("#text-link-up").click(function(){
 		var linkhref = prompt("Paste Link Here");
@@ -68,12 +70,14 @@ $(document).ready(function () {
 		if (title.length == 0)
 		{
 			$('#Title').addClass("error");
+			$('#Error-Title').addClass("error");
 			$('#Error-Title').show();
 			$('#Error-Title').text("Length of Title needs to be > 0");
 		}
 		else
 		{
 			$('#Title').removeClass("error");
+			$('#Error-Title').removeClass("error");
 			$('#Error-Title').hide();
 			$('#Error-Title').text("");
 		}
@@ -81,12 +85,14 @@ $(document).ready(function () {
 		if (content.length == 0)
 		{
 			$('#Content').addClass("error");
+			$('#Error-Content').addClass("error");
 			$('#Error-Content').show();
 			$('#Error-Content').text("Length of Content needs to be > 0");		
 		}
 		else
 		{
 			$('#Content').removeClass("error");
+			$('#Error-Content').removeClass("error");
 			$('#Error-Content').hide();
 			$('#Error-Content').text("");
 		}
