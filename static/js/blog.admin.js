@@ -1,5 +1,29 @@
 $(document).ready(function () {
-	//https://code.google.com/p/rangyinputs/wiki/Documentation
+	
+	
+	
+	function showPreview(postContent) {
+		postContent = postContent.replace(/\[B\]/g, "<B>");
+		postContent = postContent.replace(/\[\/B\]/g, "</B>");
+		postContent = postContent.replace(/\[I\]/g, "<I>");
+		postContent = postContent.replace(/\[\/I\]/g, "</I>");
+		postContent = postContent.replace(/\[U\]/g, "<U>");
+		postContent = postContent.replace(/\[\/U\]/g, "</U>");
+		postContent = postContent.replace(/\[BR\]/g, "<BR />");
+		postContent = postContent.replace(/\[QUOTE\]/g, "&quot;");
+		postContent = postContent.replace(/\[\/QUOTE\]/g, "&quot;");
+		postContent = postContent.replace(/\[BLOCKQUOTE\]/g, "<BLOCKQUOTE>");
+		postContent = postContent.replace(/\[\/BLOCKQUOTE\]/g, "</BLOCKQUOTE>");
+		postContent = postContent.replace(/\[A HREF=/g,"<A HREF=");
+		postContent = postContent.replace(/\[\/A\]/g, "</A>");
+		postContent = postContent.replace(/\[YOUTUBE HREF=/g,"<IFRAME WIDTH=100% HEIGHT=360 FRAMEBORDER=0 ALLOWFULLSCREEN SRC=");
+		postContent = postContent.replace(/\[\/YOUTUBE\]/g, "</IFRAME>");
+		postContent = postContent.replace(/\[IMG SRC=/g,"<IMG SRC=");
+		postContent = postContent.replace(/'\]/g,"'>");
+		return postContent;
+		}
+		
+//https://code.google.com/p/rangyinputs/wiki/Documentation
 
 	$("#text-bold").click(function(){
 		$("#Content").surroundSelectedText("[B]", "[/B]");
@@ -104,4 +128,21 @@ $(document).ready(function () {
 			return false;
 		}
 	});	
+	$('#post-preview-code').click(function () {
+		
+		if ($('#post-preview-code').text() == "PREVIEW")
+		{
+			var postContent = $('#Content').val();
+			$('#post-preview-code').text("CODE");
+			$('#preview-window').show();
+			$('#Content').hide();
+			$('#preview-window').html(showPreview(postContent));
+		}
+		else
+		{
+			$('#post-preview-code').text("PREVIEW");
+			$('#preview-window').hide();
+			$('#Content').show();
+		}
+	});
 });
