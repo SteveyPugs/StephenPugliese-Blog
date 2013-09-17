@@ -38,6 +38,8 @@ server.route([
 	{method: 'GET', path: '/tags/{term}', config: { handler: home.TagSearch, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/archive/{year}/{month}', config: { handler: home.ArchiveSearch, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/login', config: { handler: user.ShowLoginPage, auth: { mode: 'try' }}},
+	{method: 'GET', path: '/register', config: { handler: user.RegisterView, auth: { mode: 'try' }}},
+	{method: 'POST', path: '/register', config: { handler: user.RegisterUser}},
 	{method: 'POST', path: '/login/verify', config: {handler: user.VerifyLogin, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/logout', config: { handler: user.Logout, auth: true}},
 	
