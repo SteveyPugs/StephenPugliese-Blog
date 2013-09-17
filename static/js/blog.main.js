@@ -5,7 +5,11 @@ $(document).ready(function () {
 	$('#BlogID').val(pageID);
 	}
 
-	
+	if (window.location.search.replace("?","") == "success")
+	{
+		$('#register-success').foundation('reveal', 'open');
+	}
+
 	//Add Comment Check
 	$('#comment-save').click(function () {
 		

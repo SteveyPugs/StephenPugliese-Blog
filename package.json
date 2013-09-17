@@ -16,10 +16,9 @@
     "url": "https://github.com/SteveyPugs/StephenPugliese-Blog/issues"
   },
   "dependencies": {
-    "hapi": "~1.9.0",
-    "mysql": "~2.0.0-alpha8",
+    "hapi": "~1.9.7",
+    "mysql": "~2.0.0-alpha9",
     "handlebars": "~1.0.12",
-    "forever": "~0.10.8",
-    "node_hash": "~0.2.0"
+    "forever": "~0.10.8"
   }
 }
