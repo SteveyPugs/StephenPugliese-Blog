@@ -8,6 +8,8 @@
 	<title>End Of Line: Login</title>
 	<link rel="stylesheet" href="/css/foundation.css">
 	<script src="/js/vendor/custom.modernizr.js"></script>
+	<script src="/js/vendor/jquery.js"></script>
+	<script src="/js/blog.login.js"></script>
 </head>
 <body>
 	<div class="row">
@@ -23,6 +25,12 @@
 				<h4 class="text-center">Administration</h4>
 				<hr />
 				<form method="post" action="/login/verify">
+				<div class="hide" id="badlogin">
+					<div data-alert class="hide alert-box alert">
+					  Login Invalid
+					  <a href="#" class="close">&times;</a>
+					</div>
+				</div>
 				<div class="row">
 					<div class="large-12 columns">
 					<input type="text" placeholder="E-Mail Address" name="email">
