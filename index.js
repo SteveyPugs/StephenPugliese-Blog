@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
-var server = Hapi.createServer('localhost', 1234, { cors: true });
-//var server = Hapi.createServer('0.0.0.0', 1234, { cors: true, location:"http://www.endoflne.com" });  //production
+var masterConfig = require('./config/config');
+var serverConfig = masterConfig.config;
+var server = new Hapi.Server(serverConfig.hostname, serverConfig.port, serverConfig.options);
 
 var home = require('./lib').Home;
 var user = require('./lib').User;
@@ -42,6 +43,8 @@ server.route([
 	{method: 'POST', path: '/register', config: { handler: user.RegisterUser}},
 	{method: 'POST', path: '/login/verify', config: {handler: user.VerifyLogin, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/logout', config: { handler: user.Logout, auth: true}},
+	{method: '*', path: '/confirm/{hashkey*}', config: { handler: user.Confirm, auth: false}},
+
 	
 	//All static content
 	{method: '*', path: '/{path*}', handler: {directory: {path: './static/', listing: false, redirectToSlash:true}}}
@@ -62,5 +65,6 @@ server.on('internalError', function (request, err) {
 
 server.start(function(){
 	console.log('Sever Started at: ' + server.info.uri);
+	user.setURI(server.info.uri);
 });
 

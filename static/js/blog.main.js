@@ -10,6 +10,11 @@ $(document).ready(function () {
 		$('#register-success').foundation('reveal', 'open');
 	}
 
+	if (window.location.search.replace("?","") == "confirmed")
+	{
+		$('#register-confirm').foundation('reveal', 'open');
+	}
+
 	//Add Comment Check
 	$('#comment-save').click(function () {
 		
