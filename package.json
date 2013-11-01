@@ -1,6 +1,6 @@
 {
   "name": "StephenPugliese-Blog",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Stephen Pugliese Blog",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,10 @@
   },
   "dependencies": {
     "hapi": "~1.9.7",
-    "mysql": "~2.0.0-alpha9",
     "handlebars": "~1.0.12",
-    "forever": "~0.10.8"
+    "forever": "~0.10.8",
+    "sequelize": "~2.0.0-beta.0",
+    "nodemailer": "~0.5.3",
+    "async": "~0.2.9"
   }
 }

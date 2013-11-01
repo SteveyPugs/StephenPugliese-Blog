@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
-var server = Hapi.createServer('localhost', 1234, { cors: true });
-//var server = Hapi.createServer('0.0.0.0', 1234, { cors: true, location:"http://www.endoflne.com" });  //production
+var masterConfig = require('./config/config');
+var serverConfig = masterConfig.config;
+var server = new Hapi.Server(serverConfig.hostname, serverConfig.port, serverConfig.options);
 
 var home = require('./lib').Home;
 var user = require('./lib').User;
@@ -28,20 +29,21 @@ server.route([
 	{method: 'GET', path: '/tags', config: {handler: admin.Tags, auth: true}},
 	//Updates
 	{method: 'POST', path: '/post-save', config: {handler: admin.PostSave, auth: true}},
-	{method: 'POST', path: '/comment-save', config: {handler: admin.CommentSave, auth: true}},
 	{method: 'POST', path: '/tag-save', config: {handler: admin.TagsSave, auth: true}},
 	
 	
 	//Non-Admin Pags
+	{method: 'POST', path: '/comment-save', config: {handler: admin.CommentSave, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/post/{id}', config: { handler: home.GetEntry, auth: { mode: 'try' }}},
 	{method: 'POST', path: '/search', config: { handler: home.EntrySearch, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/tags/{term}', config: { handler: home.TagSearch, auth: { mode: 'try' }}},
-	{method: 'GET', path: '/archive/{year}/{month}', config: { handler: home.ArchiveSearch, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/login', config: { handler: user.ShowLoginPage, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/register', config: { handler: user.RegisterView, auth: { mode: 'try' }}},
 	{method: 'POST', path: '/register', config: { handler: user.RegisterUser}},
 	{method: 'POST', path: '/login/verify', config: {handler: user.VerifyLogin, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/logout', config: { handler: user.Logout, auth: true}},
+	{method: '*', path: '/confirm/{hashkey*}', config: { handler: user.Confirm, auth: false}},
+
 	
 	//All static content
 	{method: '*', path: '/{path*}', handler: {directory: {path: './static/', listing: false, redirectToSlash:true}}}
@@ -62,5 +64,6 @@ server.on('internalError', function (request, err) {
 
 server.start(function(){
 	console.log('Sever Started at: ' + server.info.uri);
+	user.setURI(server.info.uri);
 });
 

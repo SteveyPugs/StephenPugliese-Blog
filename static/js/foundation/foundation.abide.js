@@ -9,7 +9,7 @@
     version : '4.3.0',
 
     settings : {
-      live_validate : true,
+      live_validate : false,
       focus_on_invalid : true,
       timeout : 1000,
       patterns : {
