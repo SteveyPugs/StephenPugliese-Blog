@@ -1,26 +1,11 @@
-<nav class="top-bar">
-	<section class="top-bar-section">
-	
-		<ul class="left">
-			
-			{{#if userstatus}}
-				<!-- Logged In -->				
-				<li class="divider"></li>
-				<li class="active"><a href="/post-new">New Entry</a></li>
-				<li class="divider"></li>
-				<li class="active"><a href="/tags">Category Management</a></li>
-				<li class="divider"></li>
-				<li class="active"><a href="/logout">Log Out</a></li>
-				<!-- Logged In -->
-			{{else}}
-				<!-- Not Logged In -->
-				<li class="divider"></li>
-				<li class="active"><a href="/login">Log In</a></li>
-				<li class="divider"></li>
-				<li class="active"><a href="/register">Register</a></li>
-				<li class="divider"></li>
-				<!-- Not Logged In -->
-			{{/if}}			
-		</ul>
-	</section>
-</nav>
+{{#if userstatus}}
+<ul class="small-block-grid-2">
+	<li class="text-center"><a href="/post-new">New Entry</a></li>
+	<li class="text-center"><a href="/logout">Log Out</a></li>
+</ul>
+{{else}}
+<ul class="small-block-grid-2">
+	<li class="text-center"><a href="/login">Log In</a></li>
+	<li class="text-center"><a href="/register">Register</a></li>
+</ul>
+{{/if}}

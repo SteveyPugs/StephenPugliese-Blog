@@ -18,9 +18,9 @@
   "dependencies": {
     "hapi": "~1.9.7",
     "handlebars": "~1.0.12",
-    "forever": "~0.10.8",
     "sequelize": "~2.0.0-beta.0",
     "nodemailer": "~0.5.3",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "mysql": "~2.0.0-rc2"
   }
 }

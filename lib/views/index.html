@@ -6,17 +6,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>
-	End Of Line{{#if archmth.length}}: Archive {{archmth}}, {{archyear}}{{/if}}{{#if tagname.length}}: Tags - #{{tagname}}{{/if}}{{#if search.length}}: Search - {{search}}{{/if}}
+	End Of Lines
 	</title>
 	<link rel="stylesheet" href="/css/foundation.css">
-	<script src="/js/vendor/jquery.js"></script>
-	<script src="/js/blog.main.js"></script>
-	<script src="/js/vendor/custom.modernizr.js"></script>
-	
+	<script src="/js/modernizr.js"></script>
 </head>
 <body>
 	<div class="row">
-		<div class="large-12 columns">
+		<div class="large-12 columns text-center">
 			<h2 class="subheader"><a href="/">End Of Line</a></h2>
 		</div>
 	</div>
@@ -26,98 +23,39 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-9 columns">
-			{{#if archmth.length}}
-			<h3>Archive Posts For {{archmth}} {{archyear}}</h3>
-			{{/if}}
-			{{#if tagname.length}}
-			<h3>Archive Posts for Tag <i>#{{tagname}}</i></h3>
-			{{/if}}
-			{{#if search.length}}
-			<h3>Search for <i>"{{search}}"</i></h3>
-			{{/if}}
+		<div class="large-12 columns">
 			{{#if entries.length}}
 			{{#each entries}}
 			<div class="panel">
 				<div class="row">
 					<div class="large-12 columns">
-						<!--Blog Title-->
-						<h3 class="subheader">{{BlogTitle}}</h3>
+						<h3 class="subheader"><a href="/post/{{BlogID}}">{{BlogTitle}}</a></h3>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<!--Blog Date-->
 						<p style="font-size:13px; font-weight:bold;">Published {{BlogCreateDate}}</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<!--Blog Content-->
 						<p style="font-size:13px;" class="Content">{{{BlogContent}}}</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<p><a href="/post/{{BlogID}}">Permalink</a> - <a href="/post-edit/{{BlogID}}">Edit</a></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<h6>Comments ({{CommentAmount}}) - #{{TagName}}</h6>
+						<h6><a href="/comments/{{BlogID}}">Comments</a>{{#if ../userstatus}} - <a href="/post-edit/{{BlogID}}">Edit</a>{{/if}}</h6>
 					</div>
 				</div>
 			</div>
 			{{/each}}
 			{{else}}
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h4 class="subheader">No Results Were Found For the Current Search Term</h4>
-					</div>
+			<div class="row">
+				<div class="large-12 columns text-center">
+					<h4 class="subheader">No Results Were Found</h4>
 				</div>
 			</div>
 			{{/if}}
-			
-			{{#if comments.length}}
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h4><u>Comments</u></h4>
-						{{#each comments}}
-						<fieldset>
-							<legend>{{CommentName}}</legend>
-							<p>{{CommentContent}}</p>
-						</fieldset>
-						{{/each}}
-					</div>
-				</div>
-			</div>
-			{{/if}}
-			
-			{{#if newcomment}}
-			<form method="post" action="/comment-save">
-			<input type="hidden" name="BlogID" id="BlogID">
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h5>Add Comment</h5>
-						<input type="text" placeholder="Name" name="Name" id="Name">
-						<small class="hide" id="Error-Name"></small>
-						<textarea placeholder="Comment" name="Comment" id="Comment"></textarea>
-						<small class="hide" id="Error-Comment"></small>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<input type="submit" class="button secondary medium radius" value="Add" id="comment-save">
-					</div>
-				</div>
-			</div>
-			{{/if}}
-		</div>
-		<div class="large-3 columns">
-			{{> sidebar}}
 		</div>
 	</div>
 
@@ -136,52 +74,14 @@
 		</div>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
-
-  <script>
-  document.write('<script src=' +
-  ('__proto__' in {} ? '/js/vendor/zepto' : 'js/vendor/jquery') +
-  '.js><\/script>')
-  </script>
-  
-  <script src="/js/foundation.min.js"></script>
-  <!--
-  
-  <script src="js/foundation/foundation.js"></script>
-  
-  <script src="js/foundation/foundation.alerts.js"></script>
-  
-  <script src="js/foundation/foundation.clearing.js"></script>
-  
-  <script src="js/foundation/foundation.cookie.js"></script>
-  
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  
-  <script src="js/foundation/foundation.forms.js"></script>
-  
-  <script src="js/foundation/foundation.joyride.js"></script>
-  
-  <script src="js/foundation/foundation.magellan.js"></script>
-  
-  <script src="js/foundation/foundation.orbit.js"></script>
-  
-  <script src="js/foundation/foundation.reveal.js"></script>
-  
-  <script src="js/foundation/foundation.section.js"></script>
-  
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  
-  <script src="js/foundation/foundation.topbar.js"></script>
-  
-  <script src="js/foundation/foundation.interchange.js"></script>
-  
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  
-  <script src="js/foundation/foundation.abide.js"></script>
-  
-  -->
-  
-  <script>
-    $(document).foundation();
-  </script>
+	<div id="register-confirm-error" class="reveal-modal">
+		<div class="large-12 columns">
+			<h2 class="subheader">Issue with Confirming</h2>
+			<p class="lead">Your account can not be actived because of an issue with your confirmation link!</p>	
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	{{> footer}}
+	<script src="/js/blog.main.js"></script>
 </body>
 </html>

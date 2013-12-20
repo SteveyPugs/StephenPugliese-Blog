@@ -21,22 +21,20 @@ server.auth('session', {
 server.route([
 	//Home
 	{method: 'GET', path: '/',  config: { handler: home.GetBlogEntrys, auth: { mode: 'try' }}},
+	{method: 'GET', path: '/post/{id}', config: { handler: home.GetBlogEntrys, auth: { mode: 'try' }}},
+	{method: 'GET', path: '/comments/{id}', config: { handler: home.GetComments, auth: { mode: 'try' }}},
 	
 	//Pages that require Administrator
 	//Views
 	{method: 'GET', path: '/post-new', config: {handler: admin.PostNew, auth: true}},
 	{method: 'GET', path: '/post-edit/{id}', config: {handler: admin.PostEdit, auth: true}},
-	{method: 'GET', path: '/tags', config: {handler: admin.Tags, auth: true}},
 	//Updates
 	{method: 'POST', path: '/post-save', config: {handler: admin.PostSave, auth: true}},
-	{method: 'POST', path: '/tag-save', config: {handler: admin.TagsSave, auth: true}},
 	
 	
 	//Non-Admin Pags
 	{method: 'POST', path: '/comment-save', config: {handler: admin.CommentSave, auth: { mode: 'try' }}},
-	{method: 'GET', path: '/post/{id}', config: { handler: home.GetEntry, auth: { mode: 'try' }}},
-	{method: 'POST', path: '/search', config: { handler: home.EntrySearch, auth: { mode: 'try' }}},
-	{method: 'GET', path: '/tags/{term}', config: { handler: home.TagSearch, auth: { mode: 'try' }}},
+	
 	{method: 'GET', path: '/login', config: { handler: user.ShowLoginPage, auth: { mode: 'try' }}},
 	{method: 'GET', path: '/register', config: { handler: user.RegisterView, auth: { mode: 'try' }}},
 	{method: 'POST', path: '/register', config: { handler: user.RegisterUser}},

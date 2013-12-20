@@ -3,3 +3,4 @@ lib/db.js
 .DS_Store
 
 config/config.js
+config/database.js
