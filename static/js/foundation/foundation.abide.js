@@ -7,7 +7,8 @@
     version : '5.0.0',
 
     settings : {
-      focus_on_invalid : true,
+      live_validate : false,
+      focus_on_invalid : false,
       timeout : 1000,
       patterns : {
         alpha: /[a-zA-Z]+/,

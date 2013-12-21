@@ -1,4 +1,11 @@
 @import url("//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
+
+@font-face {
+  font-family: Tron;
+  src: url('Tr2n.ttf');
+}
+
+
 meta.foundation-mq-small {
   font-family: "/only screen and (max-width: 40em)/";
   width: 0em; }
@@ -2161,7 +2168,7 @@ button, .button {
 /* Panels */
 .panel {
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #d9d9d9;
   margin-bottom: 1.25rem;
   padding: 1.25rem;
@@ -3128,7 +3135,7 @@ blockquote p {
     line-height: 1.4; }
 
   h1 {
-    font-size: 2.75rem; }
+    font-size: 3.25rem; }
 
   h2 {
     font-size: 2.3125rem; }

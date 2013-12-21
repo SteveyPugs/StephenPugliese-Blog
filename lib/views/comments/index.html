@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 	End Of Line
 	</title>
@@ -11,16 +10,7 @@
 	<script src="/js/modernizr.js"></script>
 </head>
 <body>
-	<div class="row">
-		<div class="large-12 columns text-center">
-			<h2 class="subheader"><a href="/">End Of Line</a></h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-12 columns">
-			{{> menu}}
-		</div>
-	</div>
+	{{> menu}}
 	<div class="row">
 		<div class="large-12 columns">
 			<h4><b>Comments</b></h4>
@@ -38,22 +28,32 @@
 			{{/each}}
 			{{/if}}
 			<form method="post" action="/comment-save" data-abide>
-			<input type="hidden" name="BlogID" id="BlogID" value="{{blogid}}">
-			<div class="panel">
-				<div class="row">
-					<div class="large-12 columns">
-						<h5>Add Comment</h5>
-						<input type="text" required placeholder="Name" name="Name">
-						<textarea required placeholder="Comment" name="Comment" id="Comment"></textarea>
+				<input type="hidden" name="BlogID" id="BlogID" value="{{blogid}}">
+				<div class="panel">
+					<div class="row">
+						<div class="large-12 columns">
+							<h5>Add Comment</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<input type="text" required placeholder="Name" name="Name">
+							<small class="error">Name is required</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<textarea required placeholder="Comment" name="Comment"></textarea>
+							<small class="error">Content is required</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<input type="submit" class="button success small radius" value="Add" id="comment-save">
+							<a class="button success small radius" href="javascript:history.back()">Back</a>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<input type="submit" class="button success medium radius" value="Add" id="comment-save">
-						<a class="button success medium radius" href="javascript:history.back()">Back</a>
-					</div>
-				</div>
-			</div>
 			</form>
 		</div>
 	</div>

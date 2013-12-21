@@ -1,95 +1,70 @@
-<!DOCTYPE html>
-<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 		End Of Line:{{#if entries.length}}Edit {{else}}New{{/if}} Post
 	</title>
 	<link rel="stylesheet" href="/css/foundation.css">
 	<script src="/js/modernizr.js"></script>
-	<script src="/js/blog.admin.js"></script>
-	<script src="/js/blog.ranging.min.js"></script>
 </head>
 <body>
-	<div class="row">
-		<div class="large-12 columns text-center">
-			<h2 class="subheader"><a href="/">End Of Line</a></h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-12 columns">
-			{{> menu}}
-		</div>
-	</div>
+	{{> menu}}
 	<div class="row">
 		<div class="large-12 columns">
 			<div class="panel">
-				<form method="post" action="/post-save">
-					<fieldset>
-						<legend>{{#if entries.length}}Edit{{else}}New{{/if}} Entry Form</legend>
-							{{#if entries.length}}
-								{{#each entries}}
-								<input type="hidden" name="Type" value="E">
-								<input type="hidden" name="BlogID" value="{{BlogID}}">
-								<div class="row">
-									<div class="large-12 columns">
-										<input type="text" placeholder="Title" name="Title" id="Title" value="{{BlogTitle}}">
-										<small class="hide" id="Error-Title"></small>
-									</div>
-								</div>
-								{{> tools}}
-								<div class="row">
-									<div class="large-12 columns">
-										<textarea placeholder="Content" name="Content" id="Content">{{BlogContent}}</textarea>
-										<small class="hide" id="Error-Content"></small>
-									</div>
-								</div>
-								{{/each}}
-							{{else}}
-								<input type="hidden" name="Type" value="N">
-								<div class="row">
-									<div class="large-12 columns">
-										<input type="text" placeholder="Title" name="Title" id="Title">
-										<small class="hide" id="Error-Title"></small>
-									</div>
-								</div>
-								{{> tools}}
-								<div class="row">
-									<div class="large-12 columns">
-										<textarea placeholder="Content" name="Content" id="Content"></textarea>
-										<small class="hide" id="Error-Content"></small>
-									</div>
-								</div>
-							{{/if}}
-							
-							<div class="row">
-								<div class="large-12 columns hide" id="preview-window">
-									Content Preview
-								</div>
-							</div>
-							<br>
+				<form method="post" action="/post-save"  data-abide>
+					<h3>{{#if entries.length}}Edit{{else}}New{{/if}} Entry</h3>
+					<input type="hidden" name="Type" value="{{#if entries.length}}E{{else}}N{{/if}}">
+					<input type="hidden" name="BlogID" value="{{#each entries}}{{BlogID}}{{/each}}">
+					<div class="row">
+						<div class="large-12 columns">
+							<input type="text" required placeholder="Title" name="Title" value="{{#each entries}}{{BlogTitle}}{{/each}}">
+							<small class="error">Title is required</small>
+						</div>
+					</div>
+					{{> tools}}
+					<div class="row">
+						<div class="large-12 columns">
+							<textarea required placeholder="Content" name="Content">{{#each entries}}{{BlogContent}}{{/each}}</textarea>
+							<small class="error">Content is required</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-6 columns">
+						<h6>Is this a draft?</h6>
+						<input type="radio" name="Draft" value="0" id="DraftNo" 
+						{{#each entries}}
+						{{#unless Draft}}checked{{/unless}}
+						{{/each}}
+						><label>No</label>
+      					<input type="radio" name="Draft" value="1" id="DraftYes"
+      					{{#each entries}}
+						{{#if Draft}}checked{{/if}}
+						{{/each}}
 
-							{{#if entries.length}}
-							<div class="row">
-								<div class="large-6 columns">
-									<input type="submit" class="button success medium radius" value="Update" id="post-save">
-								</div>
-							</div>
-							{{else}}
-							<div class="row">
-								<div class="large-6 columns">
-									<input type="submit" class="button success medium radius" value="Add"  id="post-save">
-								</div>
-							</div>
-							{{/if}}
-					</fieldset>
+						{{#unless entries.length}}checked{{/unless}}
+      					><label>Yes</label>
+						</div>
+					</div>			
+					<div class="row">
+						<div class="large-12 columns hide" id="preview-window">
+							Content Preview
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="large-6 columns">
+							<input type="submit" class="button success small radius" value="{{#if entries.length}}Update{{else}}Add{{/if}}" id="post-save">
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	{{> footer}}
+	<script src="/js/blog.admin.js"></script>
+	<script src="/js/blog.ranging.min.js"></script>
 </body>
 </html>
