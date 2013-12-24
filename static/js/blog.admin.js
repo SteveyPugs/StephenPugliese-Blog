@@ -12,8 +12,8 @@ $(document).ready(function () {
 		postContent = postContent.replace(/\[BR\]/g, "<BR />");
 		postContent = postContent.replace(/\[QUOTE\]/g, "&quot;");
 		postContent = postContent.replace(/\[\/QUOTE\]/g, "&quot;");
-		postContent = postContent.replace(/\[BLOCKQUOTE\]/g, "<BLOCKQUOTE>");
-		postContent = postContent.replace(/\[\/BLOCKQUOTE\]/g, "</BLOCKQUOTE>");
+		postContent = postContent.replace(/\[BLOCKQUOTE\]/g, "<CITE><b>");
+		postContent = postContent.replace(/\[\/BLOCKQUOTE\]/g, "</b></CITE>");
 		postContent = postContent.replace(/\[A HREF=/g,"<A HREF=");
 		postContent = postContent.replace(/\[\/A\]/g, "</A>");
 		postContent = postContent.replace(/\[YOUTUBE HREF=/g,"<IFRAME WIDTH=100% HEIGHT=360 FRAMEBORDER=0 ALLOWFULLSCREEN SRC=");
