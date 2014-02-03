@@ -1,7 +1,5 @@
 $(document).ready(function () {
 	
-	
-	
 	function showPreview(postContent) {
 		postContent = postContent.replace(/\[B\]/g, "<B>");
 		postContent = postContent.replace(/\[\/B\]/g, "</B>");
@@ -15,6 +13,7 @@ $(document).ready(function () {
 		postContent = postContent.replace(/\[BLOCKQUOTE\]/g, "<CITE><b>");
 		postContent = postContent.replace(/\[\/BLOCKQUOTE\]/g, "</b></CITE>");
 		postContent = postContent.replace(/\[A HREF=/g,"<A HREF=");
+		postContent = postContent.replace(/\[A CLASS=TH HREF=/g,"<A CLASS=TH HREF=");
 		postContent = postContent.replace(/\[\/A\]/g, "</A>");
 		postContent = postContent.replace(/\[YOUTUBE HREF=/g,"<IFRAME WIDTH=100% HEIGHT=360 FRAMEBORDER=0 ALLOWFULLSCREEN SRC=");
 		postContent = postContent.replace(/\[\/YOUTUBE\]/g, "</IFRAME>");
@@ -23,6 +22,7 @@ $(document).ready(function () {
 		return postContent;
 		}
 		
+
 //https://code.google.com/p/rangyinputs/wiki/Documentation
 
 	$("#text-bold").click(function(){
@@ -77,7 +77,7 @@ $(document).ready(function () {
 		var src = prompt("Paste Link Here");
 		if (src != "")
 		{
-			$("#Content").replaceSelectedText("[IMG SRC='" + src + "']", "collapseToEnd");
+			$("#Content").surroundSelectedText("[A CLASS=TH HREF='" + src + "'][IMG SRC='" + src + "']", "[/A]");
 		}
 		else
 		{
