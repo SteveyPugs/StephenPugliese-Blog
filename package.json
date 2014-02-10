@@ -21,6 +21,7 @@
     "handlebars": "~1.1.2",
     "sequelize": "~2.0.0-beta.2",
     "mysql": "~2.0.0-rc2",
-    "nodemailer": "~0.5.15"
+    "nodemailer": "~0.5.15",
+    "feed": "~0.2.6"
   }
 }
