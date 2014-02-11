@@ -102,4 +102,9 @@ $(document).ready(function () {
 			$('#Content').show();
 		}
 	});
+
+	$("#text-correction").click(function(){
+		console.log("Check Me")
+		AtD.checkTextAreaCrossAJAX("Content", "text-correction", "TURN OFF SPELLING & GRAMMAR");
+	})
 });
