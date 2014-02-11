@@ -4,3 +4,4 @@ lib/db.js
 
 config/config.js
 config/database.js
+config/mail.js
