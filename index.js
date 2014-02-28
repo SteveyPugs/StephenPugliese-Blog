@@ -30,6 +30,16 @@ server.pack.require("hapi-auth-cookie", function (err) {
 		},
 		{
 			method: "GET",
+			path: "/{page}",
+			config: {
+				handler: home.GetBlogEntrys,
+				auth: {
+					mode: "try"
+				}
+			}
+		},
+		{
+			method: "GET",
 			path: "/post/{id}",
 			config: {
 				handler: home.GetBlogEntrys,

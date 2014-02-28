@@ -48,6 +48,19 @@
 		</div>
 	</div>
 
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="pagination-centered">
+				<ul class="pagination">
+					{{#each pages}}
+					<li id="page-{{this}}"><a href="/{{this}}">{{this}}</a></li> 
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+
 	<div id="register-success" class="reveal-modal">
 		<div class="large-12 columns">
 			<h2 class="subheader">Thanks For Registering!</h2>
@@ -71,6 +84,9 @@
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 	{{> footer}}
+	<script>
+	$("#page-{{page}}").addClass("current")
+	</script>
 	<script src="/js/blog.main.js"></script>
 </body>
 </html>
