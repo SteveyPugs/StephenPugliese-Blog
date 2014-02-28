@@ -166,5 +166,21 @@ server.pack.require("hapi-auth-cookie", function (err) {
 		partialsPath: "./lib/views/partials"
 	});
 
+
+	server.ext('onPreResponse', function (request, reply) {
+		var response = request.response
+		if (!response.isBoom) {
+			return reply()
+		}
+		var error = response
+		var ctx = {
+			message: (error.output.statusCode === 404 ? 'page not found' : 'something went wrong')
+		}
+		reply.view('404', ctx)
+	})
+
+
+
+
 	server.start();
 });
