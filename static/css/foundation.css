@@ -2820,7 +2820,7 @@ ul.pagination {
     ul.pagination li a {
       display: block;
       padding: 0.0625rem 0.625rem 0.0625rem;
-      color: #999999;
+      color: #3b55a0;
       -webkit-border-radius: 3px;
       border-radius: 3px; }
     ul.pagination li:hover a,
@@ -2832,9 +2832,8 @@ ul.pagination {
     ul.pagination li.unavailable:hover a, ul.pagination li.unavailable a:focus {
       background: transparent; }
     ul.pagination li.current a {
-      background: #008cba;
+      background: #3b55a0;
       color: white;
-      font-weight: bold;
       cursor: default; }
       ul.pagination li.current a:hover, ul.pagination li.current a:focus {
         background: #008cba; }
