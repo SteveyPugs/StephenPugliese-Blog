@@ -24,6 +24,9 @@
     "feed": "~0.2.6",
     "request": "~2.34.0",
     "hapi": "~2.5.0",
-    "hapi-auth-cookie": "~1.0.1"
+    "hapi-auth-cookie": "~1.0.1",
+    "contentful-management": "0.0.5",
+    "contentful": "^0.1.0",
+    "chance": "^0.5.4"
   }
 }

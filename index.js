@@ -103,6 +103,18 @@ server.pack.require("hapi-auth-cookie", function (err) {
 			}
 		},
 		{
+			method: "POST",
+			path: "/upload",
+			config: {
+				handler: admin.Upload,
+				payload: {
+					output: "stream",
+					parse: true
+				},
+				auth: true
+			}
+		},
+		{
 			method: "GET",
 			path: "/login",
 			config: {

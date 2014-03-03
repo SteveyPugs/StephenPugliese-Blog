@@ -26,6 +26,22 @@
 						</div>
 					</div>
 					{{> tools}}
+					<div class="row" id="PictureFrames">
+						<div class="large-12 columns">
+							<div class="panel callout">
+								<form method="post">
+									Upload Image: <input id="image" type="file"/>
+									<br>
+									<a href="#" id="upload" style="color:white;" class="tiny button success">Upload</a>
+								</form>
+								<hr>
+								{{#each contentful}}
+								<a href="#" onClick="chooseIMG('{{fields.file.url}}')"><img class="th" width="20%" src="{{fields.file.url}}" alt="{{fields.title}}"></a>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="large-12 columns">
 							<textarea required placeholder="Content" name="Content" id="Content">{{#each entries}}{{BlogContent}}{{/each}}</textarea>
@@ -71,3 +87,8 @@
 	<script src="/js/blog.ranging.min.js"></script>
 </body>
 </html>
+<script>
+	$(document).ready(function(){
+		$("#PictureFrames").hide()
+	})
+</script>

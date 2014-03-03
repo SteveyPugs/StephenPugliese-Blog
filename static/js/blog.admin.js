@@ -73,7 +73,7 @@ $(document).ready(function () {
 		}	
 	});
 	
-	$("#image").click(function(){
+	$("#image").click(function(src){
 		var src = prompt("Paste Link Here");
 		if (src != "")
 		{
@@ -107,4 +107,27 @@ $(document).ready(function () {
 		console.log("Check Me")
 		AtD.checkTextAreaCrossAJAX("Content", "text-correction", "TURN OFF SPELLING & GRAMMAR");
 	})
+
+	$("#image-upload-insert").click(function(){
+		$("#PictureFrames").slideToggle()
+	})
+
+	$("#upload").click(function(){
+		var image = $("#image").val();
+		$.ajax({
+			type: "POST",
+			url: "/upload",
+			enctype: 'multipart/form-data',
+			data: {
+                file: image
+            },
+			success: function () {
+                alert("File uploaded!");
+            }
+		});
+	})
 });
+
+function chooseIMG(src){
+	$("#Content").surroundSelectedText("[A CLASS=TH HREF='" + src + "'][IMG SRC='" + src + "']", "[/A]");
+}
