@@ -11,15 +11,17 @@
 <div class="row">
 	<div class="large-12 columns text-center">
 		<h1><a href="/" style="font-family:Tron;">End Of Line</a></h1>
-		<ul class="small-block-grid-3">
 		{{#if userstatus}}
+		<ul class="small-block-grid-4">
 			<li class="text-center"><a href="/post-new">New Entry</a></li>
+			<li class="text-center"><a href="/images">Upload Images</a></li>
 			<li class="text-center"><a href="/logout">Log Out</a></li>
 		{{else}}
+		<ul class="small-block-grid-3">
 			<li class="text-center"><a href="/login">Log In</a></li>
 			<li class="text-center"><a href="/register">Register</a></li>
 		{{/if}}
-		<li class="text-center"><a href="/rss"><img src="/img/rss.png" width="10%" /></a></li>
+			<li class="text-center"><a href="/rss"><img src="/img/rss.png" width="10%" /></a></li>
 		</ul>
 	</div>
 </div>

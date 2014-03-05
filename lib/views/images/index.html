@@ -1,0 +1,32 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		End Of Line: Adding Images
+	</title>
+	<link rel="stylesheet" href="/css/foundation.css">
+	<link rel="stylesheet" href="/css/atd.css" />
+	<script src="/js/vendor/modernizr.js"></script>
+</head>
+<body>
+	{{> menu}}
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="panel">
+				<form method="post" type="multipart/form-data" action="/upload" >
+					<h3>Adding Images</h3>
+					<div class="row">
+						<div class="large-12 columns">
+							<input name="image" id="image" type="file"/>
+							<input type="submit" class="button success small radius" value="Upload" id="post-save">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	{{> footer}}
+</body>
+</html>
