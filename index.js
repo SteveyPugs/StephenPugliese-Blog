@@ -49,6 +49,16 @@ server.pack.require("hapi-auth-cookie", function (err) {
 			}
 		},
 		{
+			method: "DELETE",
+			path: "/post/{id}",
+			config: {
+				handler: admin.PostDelete,
+				auth: {
+					mode: "try"
+				}
+			}
+		},
+		{
 			method: "GET",
 			path: "/comments/{id}",
 			config: {

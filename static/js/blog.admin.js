@@ -111,6 +111,16 @@ $(document).ready(function () {
 	$("#image-upload-insert").click(function(){
 		$("#PictureFrames").slideToggle()
 	})
+
+	$("a.delete").click(function(){
+		$.ajax({
+			url: '/post/' + $(this).attr("id"),
+			type: 'DELETE',
+			success: function(result) {
+				location.reload();
+			}
+		});
+	});
 });
 
 function chooseIMG(src){
