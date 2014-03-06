@@ -29,9 +29,13 @@
 					<div class="row" id="PictureFrames">
 						<div class="large-12 columns">
 							<div class="panel callout">
+								{{#if s3.length}}
 								{{#each s3}}
 								<a onClick="chooseIMG('{{pictureURL}}')"><img class="th" width="20%" src="{{pictureURL}}"></a>
 								{{/each}}
+								{{else}}
+								<a href="/images">No images available. Click here to upload</a>
+								{{/if}}
 							</div>
 						</div>
 					</div>

@@ -15,11 +15,15 @@
 	<div class="row">
 		<div class="large-12 columns">
 			<div class="panel">
-				<form method="post" type="multipart/form-data" action="/upload" >
+				<form method="post" enctype="multipart/form-data" action="/upload" >
 					<h3>Adding Images</h3>
+					<div data-alert class="alert-box success" id="ImageAlert">
+						Image Uploaded
+						<a href="#" class="close">&times;</a>
+					</div>
 					<div class="row">
 						<div class="large-12 columns">
-							<input name="image" id="image" type="file"/>
+							<input name="file" id="file" type="file" accept="image/*">
 							<input type="submit" class="button success small radius" value="Upload" id="post-save">
 						</div>
 					</div>
@@ -30,3 +34,11 @@
 	{{> footer}}
 </body>
 </html>
+<script>
+	$(document).ready(function(){
+		queryString = location.search
+		if(queryString != "?success"){
+			$("#ImageAlert").hide()
+		}
+	})
+</script>

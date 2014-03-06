@@ -25,6 +25,7 @@
     "request": "~2.34.0",
     "hapi": "~2.5.0",
     "hapi-auth-cookie": "~1.0.1",
-    "chance": "^0.5.4"
+    "chance": "^0.5.4",
+    "aws-sdk": "^2.0.0-rc10"
   }
 }
