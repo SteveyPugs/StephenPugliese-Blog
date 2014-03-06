@@ -171,10 +171,9 @@ server.pack.require("hapi-auth-cookie", function (err) {
 		},
 		{
 			method: "*",
-			path: "/confirm/{hashkey*}",
+			path: "/confirm/{hashkey}",
 			config: {
-				handler: user.Confirm,
-				auth: false
+				handler: user.Confirm
 			}
 		},
 		{
