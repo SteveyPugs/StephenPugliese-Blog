@@ -187,6 +187,20 @@ server.pack.require("hapi-auth-cookie", function (err) {
 			}
 		},
 		{
+			method: "GET",
+			path: "/forgot",
+			config: {
+				handler: user.ForgotView,
+			}
+		},
+		{
+			method: "POST",
+			path: "/reset",
+			config: {
+				handler: user.ResetPassword
+			}
+		},
+		{
 			method: "*",
 			path: "/{path*}",
 			handler: {

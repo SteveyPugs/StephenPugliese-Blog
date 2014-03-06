@@ -12,4 +12,8 @@ $(document).ready(function () {
 	{
 		$('#register-confirm-error').foundation('reveal', 'open');
 	}
+	if (window.location.search.replace("?","") == "reset")
+	{
+		$('#password-reset').foundation('reveal', 'open');
+	}
 });
