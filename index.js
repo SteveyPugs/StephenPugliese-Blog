@@ -194,10 +194,26 @@ server.pack.require("hapi-auth-cookie", function (err) {
 			}
 		},
 		{
+			method: "GET",
+			path: "/change-password",
+			config: {
+				handler: admin.changepwView,
+				auth: true
+			}
+		},
+		{
 			method: "POST",
 			path: "/reset",
 			config: {
 				handler: user.ResetPassword
+			}
+		},
+		{
+			method: "POST",
+			path: "/change",
+			config: {
+				handler: admin.changePassword,
+				auth: true
 			}
 		},
 		{
