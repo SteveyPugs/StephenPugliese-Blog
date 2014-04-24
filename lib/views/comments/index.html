@@ -15,7 +15,6 @@
 		<div class="large-12 columns">
 			<h4><b>Comments</b></h4>
 			<hr>
-			{{#if comments.length}}
 			{{#each comments}}
 			<div class="row">
 				<div class="large-12 columns">
@@ -28,8 +27,7 @@
 				</div>
 			</div>
 			{{/each}}
-			{{/if}}
-			<form method="post" action="/comment-save" data-abide>
+			<form method="post" action="/comment" data-abide>
 				<input type="hidden" name="BlogID" id="BlogID" value="{{blogid}}">
 				<div class="panel">
 					<div data-alert class="alert-box alert" id="CaptchaAlert">

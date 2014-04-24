@@ -11,28 +11,28 @@
 <body>
 	{{> menu}}
 	<div class="row">
-		<div class="large-2 columns">&nbsp;</div>
-		<div class="large-8 columns">
-			<div class="panel">
-				<h4 class="text-center">Register for Access</h4>
+		<div class="large-3 columns">&nbsp;</div>
+		<div class="large-6 columns">
+			<div class="panel text-center">
+				<h4>Register</h4>
 				<hr />
 				<form method="post" action="/register" class="custom" data-abide>
 				<div class="hide" id="error-duplicate">
 					<div data-alert class="hide warning alert-box">
-						This email has already been registered.<!--<br><br>If you have forgetten your password <a href="/forget">reset password</a>-->
+						This email has already been registered.
 					  <a href="#" class="close">&times;</a>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="large-12 columns">
-					<input type="email" placeholder="Enter your E-Mail Address" name="email" required>
+					<input type="email" placeholder="E-Mail Address" name="email" required class="text-center">
 					<small class="error">A valid email address is required.</small>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-					<input type="password" placeholder="Choose a password" name="password" required>
+					<input type="password" placeholder="Password" name="password" required class="text-center">
 					<small class="error">An valid password must contain at least upper/lowercase letters, 1 number and be at least 8 characters</small>
 					</div>
 				</div>
@@ -44,8 +44,15 @@
 				</form>
 			</div>
 		</div>
-		<div class="large-2 columns">&nbsp;</div>
+		<div class="large-3 columns">&nbsp;</div>
 	</div>
-  {{> footer}}
+	{{> footer}}
+	<script>
+		switch (window.location.search.replace("?","")){
+			case "error-duplicate":
+				$("#error-duplicate").show();
+				break;
+		}
+	</script>
 </body>
 </html>

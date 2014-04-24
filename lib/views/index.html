@@ -11,8 +11,7 @@
 	{{> menu}}
 	<div class="row">
 		<div class="large-12 columns">
-			{{#if entries.length}}
-			{{#each entries}}
+			{{#each posts}}
 			<div class="panel">
 				{{#if Draft}}<div data-alert class="alert-box warning radius">This entry is a draft</div>{{/if}}
 				<div class="row">
@@ -22,33 +21,24 @@
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<p style="font-size:13px; font-weight:bold;">Published {{BlogCreateDate}}</p>
+						<h6><b>Published {{BlogCreateDate}}</b></h6>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<p style="font-size:13px;" class="Content">{{{BlogContent}}}</p>
+						<p class="Content">{{{BlogContent}}}</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<h6><a href="/comments/{{BlogID}}">Comments</a>{{#if ../userstatus}} - <a href="/post-edit/{{BlogID}}">Edit</a> - <a id="{{BlogID}}" class="delete">Delete</a>{{/if}}</h6>
+						<h6><a href="/comment/{{BlogID}}">Comments</a>{{#if ../loggedin}} - <a href="/edit/{{BlogID}}">Edit</a> - <a id="{{BlogID}}" class="delete">Delete</a>{{/if}}</h6>
 						<div class="fb-like" data-href="http://www.endoflne.com/post/{{BlogID}}" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
 					</div>
 				</div>
 			</div>
 			{{/each}}
-			{{else}}
-			<div class="row">
-				<div class="large-12 columns text-center">
-					<h4 class="subheader">No Results Were Found</h4>
-				</div>
-			</div>
-			{{/if}}
 		</div>
 	</div>
-
-	
 	<div class="row">
 		<div class="large-12 columns">
 			<div class="pagination-centered">
@@ -97,9 +87,32 @@
 	<script>
 	$("#page-{{page}}").addClass("current")
 	</script>
-	<script src="/js/blog.main.js"></script>
-	{{#if userstatus}}
-	<script src="/js/blog.admin.js"></script>
+	<script>
+	if (window.location.search.replace("?","") == "success"){
+		$('#register-success').foundation('reveal', 'open');
+	}
+	if (window.location.search.replace("?","") == "confirmed"){
+		$('#register-confirm').foundation('reveal', 'open');
+	}
+	if (window.location.search.replace("?","") == "error"){
+		$('#register-confirm-error').foundation('reveal', 'open');
+	}
+	if (window.location.search.replace("?","") == "reset"){
+		$('#password-reset').foundation('reveal', 'open');
+	}
+	</script>
+	{{#if loggedin}}
+	<script>
+	$("a.delete").click(function(){
+		$.ajax({
+			url: '/delete',
+			type: 'POST',
+			data: { BlogID: $(this).attr("id") }
+		}).done(function(msg){
+			window.location.reload();
+		});
+	});
+	</script>
 	{{/if}}
 </body>
 </html>

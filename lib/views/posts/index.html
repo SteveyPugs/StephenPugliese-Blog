@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
-		End Of Line:{{#if entries.length}}Edit {{else}}New{{/if}} Post
+		End Of Line:{{#if post.length}}Edit {{else}}New{{/if}} Post
 	</title>
 	<link rel="stylesheet" href="/css/foundation.css">
 	<link rel="stylesheet" href="/css/atd.css" />
@@ -15,13 +15,16 @@
 	<div class="row">
 		<div class="large-12 columns">
 			<div class="panel">
-				<form method="post" action="/post-save"  data-abide>
-					<h3>{{#if entries.length}}Edit{{else}}New{{/if}} Entry</h3>
-					<input type="hidden" name="Type" value="{{#if entries.length}}E{{else}}N{{/if}}">
-					<input type="hidden" name="BlogID" value="{{#each entries}}{{BlogID}}{{/each}}">
+				<form method="post" action="{{#if post.length}}/edit{{else}}/create{{/if}}"  data-abide>
+					{{#if post.length}}
+					<h3>Edit Entry</h3>
+					<input type="hidden" name="BlogID" value="{{#each post}}{{BlogID}}{{/each}}">
+					{{else}}
+					<h3>New Entry</h3>
+					{{/if}}
 					<div class="row">
 						<div class="large-12 columns">
-							<input type="text" required placeholder="Title" name="Title" value="{{#each entries}}{{BlogTitle}}{{/each}}">
+							<input type="text" required placeholder="Title" name="Title" value="{{#each post}}{{BlogTitle}}{{/each}}">
 							<small class="error">Title is required</small>
 						</div>
 					</div>
@@ -39,10 +42,9 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="large-12 columns">
-							<textarea required placeholder="Content" name="Content" id="Content">{{#each entries}}{{BlogContent}}{{/each}}</textarea>
+							<textarea required placeholder="Content" name="Content" id="Content">{{#each post}}{{BlogContent}}{{/each}}</textarea>
 							<small class="error">Content is required</small>
 						</div>
 					</div>
@@ -50,16 +52,16 @@
 						<div class="large-6 columns">
 						<h6>Is this a draft?</h6>
 						<input type="radio" name="Draft" value="0" id="DraftNo" 
-						{{#each entries}}
+						{{#each post}}
 						{{#unless Draft}}checked{{/unless}}
 						{{/each}}
 						><label>No</label>
       					<input type="radio" name="Draft" value="1" id="DraftYes"
-      					{{#each entries}}
+      					{{#each post}}
 						{{#if Draft}}checked{{/if}}
 						{{/each}}
 
-						{{#unless entries.length}}checked{{/unless}}
+						{{#unless post.length}}checked{{/unless}}
       					><label>Yes</label>
 						</div>
 					</div>			
@@ -71,7 +73,7 @@
 					<br>
 					<div class="row">
 						<div class="large-6 columns">
-							<input type="submit" class="button success small radius" value="{{#if entries.length}}Update{{else}}Add{{/if}}" id="post-save">
+							<input type="submit" class="button success small radius" value="{{#if post.length}}Edit{{else}}Add{{/if}}" id="post-save">
 							<a class="button alert small radius" href="/">Cancel</a>
 						</div>
 					</div>
@@ -82,12 +84,123 @@
 	{{> footer}}
 	<script src="/js/jquery.atd.textarea.js"></script>
 	<script src="/js/csshttprequest.js"></script>
-	<script src="/js/blog.admin.js"></script>
 	<script src="/js/blog.ranging.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#PictureFrames").hide();
+		(function ($, undefined) {
+			$.fn.getCursorPosition = function() {
+				var el = $(this).get(0);
+				var pos = 0;
+				if('selectionStart' in el) {
+					pos = el.selectionStart;
+				} else if('selection' in document) {
+					el.focus();
+					var Sel = document.selection.createRange();
+					var SelLength = document.selection.createRange().text.length;
+					Sel.moveStart('character', -el.value.length);
+					pos = Sel.text.length - SelLength;
+				}
+				return pos;
+			};
+		})(jQuery);
+		$("#text-bold").click(function(){
+			$("#Content").surroundSelectedText("**", "**");
+		});
+		$("#text-italic").click(function(){
+			$("#Content").surroundSelectedText("*", "*");
+		});
+		$("#text-blockquote").click(function(){
+			$("#Content").surroundSelectedText("> ", "");
+		});
+		$("#HR").click(function(){
+			var position = $("#content").getCursorPosition();
+			$("#content").insertText("---", position, "collapseToEnd");
+		});
+		$("#image").click(function(){
+			var position = $("#Content").getCursorPosition();
+			var link = prompt("Place Your Link in the Textbox");
+			if (link !== ""){
+				var altText = prompt("Place enter alternate text");
+				var hoverText = prompt("Place enter hover text");
+				$("#Content").insertText("![" + altText + "](" + link + " '" + hoverText + "')", position, "collapseToEnd");
+			}
+			else{
+				alert("Link can not be blank");
+			}	
+		});
+		$("#text-link-up").click(function(){
+			var position = $("#Content").getCursorPosition();
+			var link = prompt("Your Link");
+			if (link !== ""){
+				var text = prompt("Text for Link");
+				if (text !== ""){
+					var hoverText = prompt("Place enter hover text");
+					$("#Content").insertText("[" + text + "](" + link + " '" + hoverText + "')", position, "collapseToEnd");
+				}
+				else{
+					alert("Text for Link can not be blank");
+				}
+			}
+			else{
+				alert("Link can not be blank");
+			}	
+		});
+		$("#post-preview-code").click(function(){
+			var content = $("#Content").val();
+			$.ajax({
+				url: "/markdown",
+				type: "POST",
+				data: {
+					content: content
+				},
+				success: function(data){
+					if ($('#post-preview-code').text() == "PREVIEW")
+					{
+						var postContent = $('#Content').val();
+						$('#post-preview-code').text("CODE");
+						$('#preview-window').show();
+						$('#Content').hide();
+						$('#preview-window').html(data);
+					}
+					else
+					{
+						$('#post-preview-code').text("PREVIEW");
+						$('#preview-window').hide();
+						$('#Content').show();
+					}
+				}
+			});
+		});
+		$("#video-youtube").click(function(){
+			var src = prompt("Enter Youtube Link");
+			if (src != ""){
+				$("#Content").surroundSelectedText("<IFRAME WIDTH=100% HEIGHT=360 FRAMEBORDER=0 ALLOWFULLSCREEN SRC='" + src + "'>", "</IFRAME>");
+			}
+			else{
+				alert("Link can't be blank!");
+			}	
+		});
+		$("#text-correction").click(function(){
+			console.log("Check Me")
+			AtD.checkTextAreaCrossAJAX("Content", "text-correction", "TURN OFF SPELLING & GRAMMAR");
+		})
+		$("#image-upload-insert").click(function(){
+			$("#PictureFrames").slideToggle()
+		})
+	})
+	function chooseIMG(src){
+		var position = $("#Content").getCursorPosition();
+		var link = src;
+		if (link !== ""){
+			var altText = prompt("Place enter alternate text");
+			var hoverText = prompt("Place enter hover text");
+			$("#Content").insertText("![" + altText + "](" + link + " '" + hoverText + "')", position, "collapseToEnd");
+		}
+		else{
+			alert("Link can not be blank");
+		}	
+	}
+	</script>
 </body>
 </html>
-<script>
-	$(document).ready(function(){
-		$("#PictureFrames").hide()
-	})
-</script>
