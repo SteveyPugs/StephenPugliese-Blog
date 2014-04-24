@@ -21,17 +21,15 @@
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<h6><b>Published {{BlogCreateDate}}</b></h6>
+						<p><b>Published {{BlogCreateDate}}</b></p>
 					</div>
 				</div>
 				<div class="row">
-					<div class="large-12 columns">
-						<p class="Content">{{{BlogContent}}}</p>
-					</div>
+					<div class="large-12 columns">{{{BlogContent}}}</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<h6><a href="/comment/{{BlogID}}">Comments</a>{{#if ../loggedin}} - <a href="/edit/{{BlogID}}">Edit</a> - <a id="{{BlogID}}" class="delete">Delete</a>{{/if}}</h6>
+						<p><b><a href="/comment/{{BlogID}}">Comments</a>{{#if ../loggedin}} - <a href="/edit/{{BlogID}}">Edit</a> - <a id="{{BlogID}}" class="delete">Delete</a>{{/if}}</b></p>
 						<div class="fb-like" data-href="http://www.endoflne.com/post/{{BlogID}}" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
 					</div>
 				</div>
