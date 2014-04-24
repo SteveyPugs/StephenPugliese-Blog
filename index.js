@@ -389,7 +389,7 @@ server.pack.require("hapi-auth-cookie", function (err) {
 											}
 										});
 									}
-									reply().redirect('/comments/' + request.payload.BlogID);
+									reply().redirect('/comment/' + request.payload.BlogID);
 								})
 							})
 						}
