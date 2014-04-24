@@ -468,7 +468,8 @@ server.pack.require("hapi-auth-cookie", function (err) {
 					}, function(err, count){
 						if (err) throw err;
 						if(count > 0){
-							var password = crypto.createHash('sha256').update("blog" + chance.word({length: 10}) + "sp").digest("hex");
+							var random = chance.word({length: 10})
+							var password = crypto.createHash('sha256').update("blog" + random + "sp").digest("hex");
 							EOL_Functions.updateUser({
 								email: request.payload.email,
 								password: password
@@ -478,7 +479,7 @@ server.pack.require("hapi-auth-cookie", function (err) {
 									from: mailConfig.sendmail.from,
 									to: request.payload.email,
 									subject: "Your password has been reset",
-									html: 'Youre password has been successfully reset. If you did not reset your password please contact support at stephen.pugliese@outlook.com. Your new password is: <b>"' + password + '"</b>.'
+									html: 'Youre password has been successfully reset. If you did not reset your password please contact support at stephen.pugliese@outlook.com. Your new password is: <b>"' + random + '"</b>.'
 								}
 								transport.sendMail(message, function(error){
 									if(error){
