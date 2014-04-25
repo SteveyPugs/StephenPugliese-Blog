@@ -114,19 +114,28 @@ server.pack.require("hapi-auth-cookie", function (err) {
 						userid: request.auth.credentials.adminid
 					}, function(err, post){
 						if (err) throw err;
-						var message = {
-							from: mailConfig.sendmail.from,
-							to: request.auth.credentials.adminemail,
-							subject: "New Post - " + request.payload.Title,
-							html: 'A new post has been made titled <b>"' + request.payload.Title + '"</b>. If it is a Draft then it will not appear in the blog entry list until you move it to a non draft status. <a href="http://www.endoflne.com/post/' + post.null + '">Click here</a> to view the post.'
-						};
-						transport.sendMail(message, function(error){
-							if (error){
-								console.log(error.message);
+
+
+						fs.readFile("static/email/index.html", 'utf8', function (err,data) {
+							var htmlTemplate = ""
+							data = data.replace("#headline#","Engage");
+							data = data.replace("#story#","A new post ""<b>"' + request.payload.Title + '"</b>"" has been created.");
+							htmlTemplate = data;
+
+							var message = {
+								from: mailConfig.sendmail.from,
+								to: request.auth.credentials.adminemail,
+								subject: "A new post has been made - " + request.payload.Title,
+								html: htmlTemplate
 							}
-							else {
-								console.log('Message sentsuccessfully!');
-							}
+							transport.sendMail(message, function(error){
+								if(error){
+									console.log(error.message)
+								}
+								else{
+									console.log('Message sent successfully!');
+								}
+							})
 						});
 						reply().redirect("/");
 					})
