@@ -8,6 +8,7 @@ var marked = require('marked');
 var masterConfig = require("./config/config");
 var serverConfig = masterConfig.config;
 var requestnpm = require('request');
+var fs = require("fs");
 var server = new Hapi.Server(serverConfig.hostname, serverConfig.port, serverConfig.options);
 var mailConfig = require('./config/mail').mailconfig;
 var transport = nodemailer.createTransport(mailConfig.method,mailConfig.sendmail.bin);
@@ -373,22 +374,29 @@ server.pack.require("hapi-auth-cookie", function (err) {
 										output_single.email = users[item].adminemail;
 										output.push(output_single);
 									}
-									for(var item in output){
-										var message = {
-											from: mailConfig.sendmail.from,
-											to: output[item].email,
-											subject: "New Comment",
-											html: 'A new comment has been made on <a href="http://www.endoflne.com/post/' + request.payload.BlogID + '">this post</a>.'
+									fs.readFile("static/email/index.html", 'utf8', function (err,data) {
+										var htmlTemplate = ""
+										data = data.replace("#headline#","Trollers beware!");
+										data = data.replace("#story#","A new comment has been posted on of our blogs. Could be a troll, who knows! Check it out <a href=http://www.endoflne.com/post/" + request.payload.BlogID + ">here");
+										htmlTemplate = data;
+
+										for(var item in output){
+											var message = {
+												from: mailConfig.sendmail.from,
+												to: output[item].email,
+												subject: "A new comment has been posted",
+												html: htmlTemplate
+											}
+											transport.sendMail(message, function(error){
+												if(error){
+													console.log(error.message)
+												}
+												else{
+													console.log('Message sent successfully!');
+												}
+											})
 										}
-										transport.sendMail(message, function(error){
-											if(error){
-												console.log(error.message);
-											}
-											else{
-												console.log('Message sent successfully!');
-											}
-										});
-									}
+									});
 									reply().redirect('/comment/' + request.payload.BlogID);
 								})
 							})
@@ -424,19 +432,26 @@ server.pack.require("hapi-auth-cookie", function (err) {
 								hash: hash
 							}, function(err, user){
 								if (err) throw err;
-								var message = {
-									from: mailConfig.sendmail.from,
-									to: request.payload.email,
-									subject: "Thanks for Registering!",
-									html: 'Thanks for registering. To verfiy your login please click <a href="http://www.endoflne.com/confirm/' + user.verifyhash +'">here</a>'
-								};
-								transport.sendMail(message, function(error){
-									if (error){
-										console.log(error.message);
+								fs.readFile("static/email/index.html", 'utf8', function (err,data) {
+									var htmlTemplate = ""
+									data = data.replace("#headline#","You are now one of us!");
+									data = data.replace("#story#","So you want to write eh? Click <a href=http://www.endoflne.com/confirm/" + user.verifyhash + ">here to complete your training!");
+									htmlTemplate = data;
+
+									var message = {
+										from: mailConfig.sendmail.from,
+										to: request.payload.email,
+										subject: "Welcome!",
+										html: htmlTemplate
 									}
-									else{
-										console.log('Message sent successfully!');
-									}
+									transport.sendMail(message, function(error){
+										if(error){
+											console.log(error.message)
+										}
+										else{
+											console.log('Message sent successfully!');
+										}
+									})
 								});
 								reply().redirect('/?success');
 							})
@@ -475,21 +490,28 @@ server.pack.require("hapi-auth-cookie", function (err) {
 								password: password
 							}, function(err, user){
 								if (err) throw err;
-								var message = {
-									from: mailConfig.sendmail.from,
-									to: request.payload.email,
-									subject: "Your password has been reset",
-									html: 'Youre password has been successfully reset. If you did not reset your password please contact support at stephen.pugliese@outlook.com. Your new password is: <b>"' + random + '"</b>.'
-								}
-								transport.sendMail(message, function(error){
-									if(error){
-										console.log(error.message)
+								fs.readFile("static/email/index.html", 'utf8', function (err,data) {
+									var htmlTemplate = ""
+									data = data.replace("#headline#","Forgetful are we?");
+									data = data.replace("#story#","Since you forgot your password, we've reset it for you! Your new password will be <b>" + random + "</b>. Please don't forget this one :)");
+									htmlTemplate = data;
+
+									var message = {
+										from: mailConfig.sendmail.from,
+										to: request.payload.email,
+										subject: "Your password has been reset",
+										html: htmlTemplate
 									}
-									else{
-										console.log('Message sent successfully!');
-									}
-									reply().redirect('/?reset');
-								})
+									transport.sendMail(message, function(error){
+										if(error){
+											console.log(error.message)
+										}
+										else{
+											console.log('Message sent successfully!');
+										}
+										reply().redirect('/?reset');
+									})
+								});
 							})
 						}
 						else{
@@ -608,10 +630,7 @@ server.pack.require("hapi-auth-cookie", function (err) {
 			return reply()
 		}
 		var error = response
-		var ctx = {
-			message: (error.output.statusCode === 404 ? 'page not found' : 'something went wrong')
-		}
-		reply.view('404', ctx)
+		reply.view('404')
 	})
 	server.start();
 });
