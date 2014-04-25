@@ -119,7 +119,7 @@ server.pack.require("hapi-auth-cookie", function (err) {
 						fs.readFile("static/email/index.html", 'utf8', function (err,data) {
 							var htmlTemplate = ""
 							data = data.replace("#headline#","Engage");
-							data = data.replace("#story#","A new post ""<b>"' + request.payload.Title + '"</b>"" has been created.");
+							data = data.replace("#story#","A new post <b>" + request.payload.Title + "</b> has been created.");
 							htmlTemplate = data;
 
 							var message = {
